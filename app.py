@@ -163,7 +163,7 @@ else:
 
 # Display dataset preview
 with st.expander("Preview Dataset", expanded=False):
-    st.dataframe(data.head(20), use_container_width=True)
+    st.dataframe(data.head(20), width="stretch")
     st.write(f"**Shape:** {data.shape[0]} rows x {data.shape[1]} columns")
 
 # Validate data
@@ -181,7 +181,7 @@ X = data[FEATURE_COLS]
 y_raw = data["diagnosis"]
 
 # Encode target if needed
-if y_raw.dtype == object:
+if not pd.api.types.is_numeric_dtype(y_raw):
     y = le.transform(y_raw)
 else:
     y = y_raw.values
@@ -228,7 +228,7 @@ if not show_all_models:
     st.subheader("Classification Report")
     report = classification_report(y, y_pred, target_names=le.classes_, output_dict=True)
     report_df = pd.DataFrame(report).transpose()
-    st.dataframe(report_df.style.format("{:.4f}"), use_container_width=True)
+    st.dataframe(report_df.style.format("{:.4f}"), width="stretch")
 
 # --- Compare All Models ---
 else:
@@ -250,7 +250,7 @@ else:
         comparison_df.style
         .highlight_max(axis=0, color="lightgreen")
         .format("{:.4f}"),
-        use_container_width=True
+        width="stretch"
     )
 
     # Bar chart comparison
