@@ -87,7 +87,7 @@ This is a **binary classification** problem where the goal is to accurately clas
 
 ## e. Live Streamlit App
 
-**Streamlit App Link:** [To be updated after deployment]
+**Streamlit App Link:** https://2026aj05227assignment-2.streamlit.app/
 
 ### App Features:
 1. **CSV Upload** - Upload test data in CSV format for evaluation
