@@ -181,7 +181,7 @@ X = data[FEATURE_COLS]
 y_raw = data["diagnosis"]
 
 # Encode target if needed
-if y_raw.dtype == object:
+if not pd.api.types.is_numeric_dtype(y_raw):
     y = le.transform(y_raw)
 else:
     y = y_raw.values
